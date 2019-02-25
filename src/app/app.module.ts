@@ -1,7 +1,10 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {HttpClientModule} from '@angular/common/http';
+
+// NgRx
 import {StoreModule} from '@ngrx/store';
+import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 // Imports for loading & configuring the in-memory web api
 import {HttpClientInMemoryWebApiModule} from 'angular-in-memory-web-api';
 import {ProductData} from './products/product-data';
@@ -15,23 +18,30 @@ import {WelcomeComponent} from './home/welcome.component';
 import {PageNotFoundComponent} from './home/page-not-found.component';
 /* Feature Modules */
 import {UserModule} from './user/user.module';
+import {environment} from '../environments/environment';
 
 @NgModule({
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    HttpClientInMemoryWebApiModule.forRoot(ProductData),
-    StoreModule.forRoot({}),
-    UserModule,
-    AppRoutingModule
-  ],
-  declarations: [
-    AppComponent,
-    ShellComponent,
-    MenuComponent,
-    WelcomeComponent,
-    PageNotFoundComponent
-  ],
-  bootstrap: [AppComponent]
+    imports: [
+        BrowserModule,
+        HttpClientModule,
+        HttpClientInMemoryWebApiModule.forRoot(ProductData),
+        StoreModule.forRoot({}),
+        StoreDevtoolsModule.instrument({
+            name: 'my-angular-ngrx',
+            maxAge: 25,
+            logOnly: environment.production
+        }),
+        UserModule,
+        AppRoutingModule
+    ],
+    declarations: [
+        AppComponent,
+        ShellComponent,
+        MenuComponent,
+        WelcomeComponent,
+        PageNotFoundComponent
+    ],
+    bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

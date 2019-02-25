@@ -40,6 +40,13 @@ export class ProductData implements InMemoryDbService {
                 'productCode': 'GMG-0042',
                 'description': 'Standard two-button video game controller',
                 'starRating': 4.6
+            },
+            {
+                'id': 10,
+                'productName': 'Car',
+                'productCode': 'GMC-0007',
+                'description': 'General Motor Company car',
+                'starRating': 4.8
             }
         ];
         return { products };
